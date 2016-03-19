@@ -13,8 +13,8 @@ node_modules
 
 ## API
 The API for this lab is being provided for you. It is available at http://localhost:3000/api. To start it up, make sure your terminal is opened to the root of your project folder. Then run `nodemon`. This server follows standard REST guidelines. Specifically, you have access to the following endpoints:
-* GET `http://localhost:3000/api/posts` - Get an array of all blog posts
-* POST `http://localhost:3000/api/posts` - Store the blog post. Returns the unique id of the newly stored post (standard behavior for APIs).
+* GET `http://localhost:3000/api/posts` - When you make a Get an array of all blog posts and send them to me
+* POST `http://localhost:3000/api/posts` - Store this blog post i'm giving you. Returns the unique id of the newly stored post (standard behavior for APIs).
 * GET `http://localhost:3000/api/posts/[some_id]` - Get the specific blog post with the given id
 * PUT `http://localhost:3000/api/posts/[some_id]` - Update the blog post specified by the given id
 

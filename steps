@@ -1,0 +1,46 @@
+- set up terminal steps (detailed in README) - DONE
+- listposts.html as the homepage
+    Should contain: 
+        - a headline/title/greeting of some sort - DONE
+        - a button at top that links(via routing) to createpost.html
+        - a function that pulls old blogposts from the server (and will add new posts as well when 
+            they're added). Most recent timestamped posts appear at the top, oldest at the bottom.
+            - these blogposts will show: title, author, timestamp
+            - these blogposts will have a button that links to singlepost.html
+            - create function where clicking on that button, not just links to singlepost.html
+                (via routing), but pulls that particular blogpost from the server to display on
+                singlepost.html (the singlepost route must have a route parameter) (look at route lecture slides)
+- set up singlepost.html
+    Should show:
+        - blog title
+        - author
+        - timestamp
+        - full blog content
+        - a button (backbutton?) that links back (via routing) to the listposts.html page
+        - Going to request the single blog post from the API (using the ID we receive on this page via a route parameter)
+- set up createpost.html
+    Should contain:
+        - author input field (use some sort of placeholder in the fields, like: <input type="text" ng-model="name" 
+            placeholder="Your Name" />)
+        - title input field
+        - content input field
+        - add a button that combines the contents of these fields and posts to the server
+            (which should add it (prepend) to the top-most listing on the blogpost.html page) AND routes 
+            user back to blogpost.html page (via routing)
+        - add a button (backbutton?) that links back (via routing) to the listposts.html page (in
+            the event that the user just wants to go back without submitting a blogpost)
+
+    
+WISHLIST - Make the individual blogpost listings on the blogpost.html page have a button
+    (a plus sign that turns to a minus sign when clicked, then a plus sign when clicked again) 
+    that when clicked, makes the blog content appear, pushing all listings below down. Then when
+    the button is clicked again, removes the content, moving all listings back up the page.
+    
+    OR....show a preview, the first 150 characters or so followed by a "...", with the listing, then have a
+    MORE button, that when clicked, displays remainder of content, in same manner as described above. A LESS 
+    button would collape the content back down again.
+    
+    EXTRA CREDIT ADDITIONS LISTED IN README
+    
+    NOTES:
+    each blog post is it's own object
