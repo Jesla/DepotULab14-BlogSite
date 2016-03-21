@@ -1,50 +1,26 @@
 //Use to instantiate app, connect factory & controllers and configure app.
 
-var app = angular.module('', []);
-
-app.controller('mainBlogCtrl', ['$scope', '$rootScope', '$location',
-	function($scope, $rootScope, $location){
-		$scope.setUser = function(view){
-			$rootScope.currentUserName = $scope.userName;
-			$scope.userName = '';
-            $location.path('/listposts');
-		};
-	}
-]);
+var app = angular.module('myBlogApp', ["ngRoute", "ngResource"]);
 
 
-
-
-
-
-
-
-
-
-app.config(['$routeProvider',
-	function($routeProvider){
+app.config(['$routeProvider', function($routeProvider){
 		$routeProvider
-			.when('/listposts', { //when this page loads...load this url and controller
-				templateUrl: 'listposts.html',
+			.when('/', { //when this page loads...load this url and controller
+				templateUrl: 'views/listposts.html',
 				controller: 'mainBlogCtrl'
 			})
 			.when('/singlepost', {
-				templateUrl: 'singlepost.html',
+				templateUrl: 'views/singlepost.html',
 				controller: 'singlePostCtrl'
 			})
 			.when('/createpost', {
-				templateUrl: 'createpost.html',
-				controller: 'createPostCtrl'
+				templateUrl: 'views/createpost.html',
+				controller: 'goCreatePost'
 			})          
 			.otherwise({
-				redirectTo: '/listposts'
+				redirectTo: 'views/createpost.html'
 			})
-}])
-
-
-
-
-
+}]);
 
 
 

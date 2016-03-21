@@ -1,1 +1,24 @@
-<h1>Previous Blog Posts</h1>
+
+<div ng-controller="mainBlogCtrl">
+    <h1>Previous Blog Posts</h1>
+    
+                    <button ng-click="goCreatePost()">CREATE A NEW POST</button>
+
+	</div>
+    
+        <!--<button ng-click="goCreatePost()" class=newPostButton>CREATE A NEW POST</button>-->
+<!--    
+    
+    <button ng-click="goLogin()">Log in</button>
+Controller:
+
+.controller('LoginCtrl', function($scope, $location) {
+    $scope.form = {
+        username: null,
+        password: null
+    };
+
+    $scope.goCreatePost = function() {
+        $location.url('views/createpost.html');
+    };
+})-->
