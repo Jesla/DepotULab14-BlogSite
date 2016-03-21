@@ -5,7 +5,7 @@ var app = angular.module('myBlogApp', ["ngRoute", "ngResource"]);
 
 app.config(['$routeProvider', function($routeProvider){
 		$routeProvider
-			.when('/', { //when this page loads...load this url and controller
+			.when('/', {
 				templateUrl: 'views/listposts.html',
 				controller: 'mainBlogCtrl'
 			})
@@ -18,7 +18,7 @@ app.config(['$routeProvider', function($routeProvider){
 				controller: 'goCreatePost'
 			})          
 			.otherwise({
-				redirectTo: 'views/createpost.html'
+				redirectTo: 'views/listposts.html'
 			})
 }]);
 

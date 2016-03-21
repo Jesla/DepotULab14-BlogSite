@@ -1,24 +1,20 @@
-
 <div ng-controller="mainBlogCtrl">
     <h1>Previous Blog Posts</h1>
-    
-                    <button ng-click="goCreatePost()">CREATE A NEW POST</button>
 
-	</div>
-    
-        <!--<button ng-click="goCreatePost()" class=newPostButton>CREATE A NEW POST</button>-->
-<!--    
-    
-    <button ng-click="goLogin()">Log in</button>
-Controller:
+    <button ng-click="go('/createpost')">CREATE A NEW POST</button>
 
-.controller('LoginCtrl', function($scope, $location) {
-    $scope.form = {
-        username: null,
-        password: null
-    };
+</div>
 
-    $scope.goCreatePost = function() {
-        $location.url('views/createpost.html');
-    };
-})-->
+<div ng-controller="blogPostList">
+
+
+    <ul class="list-group">
+        <li class="list-posts" ng-repeat="post in posts">
+            <span class="text">{{post.title}}</span>
+            <span class="text">{{post.content}}</span>
+            <span class="text">{{post.author}}</span>
+            <span class="text">{{post.createdAt}}</span>
+        </li>
+    </ul>
+
+</div>

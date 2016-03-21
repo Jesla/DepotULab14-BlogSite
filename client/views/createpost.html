@@ -1,2 +1,15 @@
 <h1>Create Post</h1>
 
+<div ng-controller="goCreatePost">
+    <div class="container" ng-init="init()">
+        <form id='send' ng-submit="createPost()">
+            <div class="input-group" id="post-input">
+                <input type="text" class="form-control" ng-model="newPostTitle" placeholder="Create a Title">
+                <input type="text" class="form-control" ng-model="newPostContent" placeholder="What's on your mind?">
+                <input type="text" class="form-control" ng-model="newPostAuthor" placeholder="Who are you?">
+                <span class="input-group-btn">
+					<input type="submit" class="btn" value="Post Your Blog!">
+				</span>
+            </div>
+        </form>
+    </div>
