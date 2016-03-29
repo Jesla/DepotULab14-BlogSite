@@ -7,21 +7,18 @@ app.config(['$routeProvider', function($routeProvider){
 		$routeProvider
 			.when('/', {
 				templateUrl: 'views/listposts.html',
-				controller: 'mainBlogCtrl'
+				controller: 'AllPostsCtrl'
 			})
 			.when('/singlepost', {
 				templateUrl: 'views/singlepost.html',
-				controller: 'singlePostCtrl'
+				controller: 'SinglePostCtrl'
 			})
 			.when('/createpost', {
 				templateUrl: 'views/createpost.html',
-				controller: 'goCreatePost'
+				controller: 'GoCreatePost'
 			})          
 			.otherwise({
 				redirectTo: 'views/listposts.html'
 			})
 }]);
-
-
-
 
