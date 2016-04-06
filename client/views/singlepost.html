@@ -1,6 +1,15 @@
 <h1>Single Post</h1>
 
-<div ng-controller="SinglePostCtrl">
-    
+<div ng-controller="SinglePostCtrl"">
+
+    <ul class="list-group">
+        <li class="list-post">
+            <span class="text">{{post.title}}</span>
+            <span class="text">{{post.author}}</span>
+            <span class="text">{{post.createdAt | date:"M/d/yyyy h:mm"}}</span>
+            <span class="text">{{post.content}}</span>
+            <button ng-click="goBack()">Go Back</button>
+        </li>
+    </ul>
     
 </div>
