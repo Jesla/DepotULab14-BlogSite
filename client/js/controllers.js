@@ -1,15 +1,16 @@
 var controllers = angular.module("myBlogApp");
 
-controllers.controller("AllPostsCtrl", ["$scope", "$location", "$http", "$rootScope", "$routeParams",
-    function ($scope, $location, $http, $rootScope, $routeParams) {
+controllers.controller("AllPostsCtrl", ["$scope", "$location", "$rootScope", "$routeParams", "blogAppFactory",
+    function ($scope, $location, $rootScope, $routeParams, blogAppFactory) {
 
         $scope.init = function () {
             $scope.getPosts();
         }
 
         $scope.getPosts = function () {
-            $http.get("http://localhost:3000/api/posts").then(function (data) {
-                $scope.posts = data.data;
+            blogAppFactory.query().$promise.then(function (data) {
+                $scope.posts = data;
+                console.log(data);
             }, function (err) {
                 console.error(err);
             });
@@ -27,8 +28,8 @@ controllers.controller("AllPostsCtrl", ["$scope", "$location", "$http", "$rootSc
 
     }]);
 
-controllers.controller("GoCreatePost", ["$scope", "$rootScope", "$http", "$location",
-    function ($scope, $rootScope, $http, $location) {
+controllers.controller("GoCreatePost", ["$scope", "$rootScope", "$location", "blogAppFactory",
+    function ($scope, $rootScope, $location, blogAppFactory) {
 
         $scope.submitPost = function () {
             var fullPost = {
@@ -43,29 +44,23 @@ controllers.controller("GoCreatePost", ["$scope", "$rootScope", "$http", "$locat
             $scope.contentField = "";
 
 
-            $http.post("http://localhost:3000/api/posts", fullPost).then(function (resp) {
+            blogAppFactory.save().$promise.then(function (resp) {
                 console.log(resp);
             }, function (err) {
                 console.error(err);
             })
 
             $location.path("/");
-            $http.get("http://localhost:3000/api/posts").then(function (data) {
-                $scope.posts = data.data;
-            }, function (err) {
-                console.error(err);
-            });
         };
     }]);
 
 
-controllers.controller("SinglePostCtrl", ["$scope", "$rootScope", "$http", "$location", "$routeParams",
-    function ($scope, $rootScope, $http, $location, $routeParams) {
+controllers.controller("SinglePostCtrl", ["$scope", "$rootScope", "$location", "$routeParams", "blogAppFactory",
+    function ($scope, $rootScope, $location, $routeParams, blogAppFactory) {
 
-        var singleViewPage = $routeParams.id
 
-        $http.get("http://localhost:3000/api/posts/" + singleViewPage).then(function (data) {
-            $scope.post = data.data;
+       blogAppFactory.get().$promise.then(function (data) {
+            $scope.post = data;
             console.log("single view button works");
             console.log(data);
 
