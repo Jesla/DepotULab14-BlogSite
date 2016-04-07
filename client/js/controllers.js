@@ -3,26 +3,22 @@ var controllers = angular.module("myBlogApp");
 controllers.controller("AllPostsCtrl", ["$scope", "$location", "$rootScope", "$routeParams", "blogAppFactory",
     function ($scope, $location, $rootScope, $routeParams, blogAppFactory) {
 
-        $scope.init = function () {
-            $scope.getPosts();
-        }
 
         $scope.getPosts = function () {
             blogAppFactory.query().$promise.then(function (data) {
                 $scope.posts = data;
-                console.log(data);
             }, function (err) {
                 console.error(err);
             });
         };
+
+        $scope.getPosts();
 
         $scope.goToCreate = function () {
             $location.path("/createpost");
         }
 
         $scope.singleView = function (id) {
-            console.log('button works');
-            console.log(id);
             $location.path("/singlepost/" + id);
         };
 
@@ -31,26 +27,34 @@ controllers.controller("AllPostsCtrl", ["$scope", "$location", "$rootScope", "$r
 controllers.controller("GoCreatePost", ["$scope", "$rootScope", "$location", "blogAppFactory",
     function ($scope, $rootScope, $location, blogAppFactory) {
 
+        $scope.titleField = "";
+        $scope.authorField = "";
+        $scope.contentField = "";
+
         $scope.submitPost = function () {
             var fullPost = {
                 title: $scope.titleField,
                 author: $scope.authorField,
                 content: $scope.contentField,
             };
-            console.log(fullPost);
-
-            $scope.titleField = "";
-            $scope.authorField = "";
-            $scope.contentField = "";
 
 
-            blogAppFactory.save().$promise.then(function (resp) {
-                console.log(resp);
-            }, function (err) {
-                console.error(err);
-            })
+            if ($scope.titleField.length === 0 || $scope.authorField.length === 0 || $scope.contentField.length === 0) {
+                alert("All Fields Required")
+            } else {
+                $scope.titleField = "";
+                $scope.authorField = "";
+                $scope.contentField = "";
 
-            $location.path("/");
+
+                blogAppFactory.save(fullPost).$promise.then(function (resp) {
+                }, function (err) {
+                    console.error(err);
+                })
+
+                $location.path("/");
+            }
+
         };
     }]);
 
@@ -58,11 +62,10 @@ controllers.controller("GoCreatePost", ["$scope", "$rootScope", "$location", "bl
 controllers.controller("SinglePostCtrl", ["$scope", "$rootScope", "$location", "$routeParams", "blogAppFactory",
     function ($scope, $rootScope, $location, $routeParams, blogAppFactory) {
 
+        var singleViewPage = $routeParams.id
 
-       blogAppFactory.get().$promise.then(function (data) {
+        blogAppFactory.get({ id: singleViewPage }).$promise.then(function (data) {
             $scope.post = data;
-            console.log("single view button works");
-            console.log(data);
 
         }, function (err) {
             console.error(err);
